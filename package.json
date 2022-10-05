@@ -1,6 +1,6 @@
 {
     "name": "@flexent/pointer",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Simple Object Get/Set",
     "type": "module",
     "sideEffects": false,
