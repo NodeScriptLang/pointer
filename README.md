@@ -2,7 +2,7 @@
 
 Simple library for getting and setting object values via [JSON Pointer](https://www.rfc-editor.org/rfc/rfc6901.html) or dot-delimited formats.
 
-## Key features
+## Highlights
 
 - 🔥 Zero dependencies
 - 💻 Works in browser
