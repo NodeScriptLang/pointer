@@ -12,7 +12,7 @@ Simple library for getting and setting object values via [JSON Pointer](https://
 ## Usage
 
 ```ts
-import * as pointer from '@flexent/pointer';
+import * as pointer from '@nodescript/pointer';
 
 const object = {
     foo: {
