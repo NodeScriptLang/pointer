@@ -1,5 +1,5 @@
 {
-    "name": "@flexent/pointer",
+    "name": "@nodescript/pointer",
     "version": "1.0.2",
     "description": "Simple Object Get/Set",
     "type": "module",
@@ -26,13 +26,13 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com/flexent/pointer.git"
+        "url": "git+ssh://git@github.com/nodescript/pointer.git"
     },
     "keywords": [],
     "author": "Boris Okunskiy",
     "license": "ISC",
     "devDependencies": {
-        "@flexent/eslint-config": "^1.0.4",
+        "@nodescript/eslint-config": "^1.0.4",
         "@types/mocha": "^8.2.3",
         "@types/node": "^16.3.1",
         "eslint": "^8.24.0",
