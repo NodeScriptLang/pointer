@@ -1,7 +1,15 @@
 export function get(data: any, pointer: string): unknown {
-    let value = data;
     const path = parsePath(pointer);
-    for (const comp of path) {
+    return deepGet(data, path);
+}
+
+function deepGet(data: any, path: string[]): unknown {
+    let value = data;
+    for (let i = 0; i < path.length; i++) {
+        const comp = path[i];
+        if (Array.isArray(value) && isWildcardComp(comp)) {
+            return value.map(_ => deepGet(_, path.slice(i + 1)));
+        }
         if (value != null) {
             value = value[comp];
         }
@@ -38,7 +46,7 @@ function deepApply(data: Record<string, any>, path: string[], value: any): void 
     const isArray = Array.isArray(data);
     const val = path.length === 1 ? value :
         data[comp] ?? (isArrayComp(rest[0]) ? [] : {});
-    if (isArray && comp === '-') {
+    if (isArray && isWildcardComp(comp)) {
         data.push(val);
     } else {
         data[comp] = val;
@@ -47,5 +55,9 @@ function deepApply(data: Record<string, any>, path: string[], value: any): void 
 }
 
 function isArrayComp(comp: string) {
-    return comp === '-' || !isNaN(Number(comp));
+    return isWildcardComp(comp) || !isNaN(Number(comp));
+}
+
+function isWildcardComp(comp: string) {
+    return comp === '-' || comp === '*';
 }
