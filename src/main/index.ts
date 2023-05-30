@@ -6,11 +6,20 @@ export function get(data: any, pointer: string): unknown {
 function deepGet(data: any, path: string[]): unknown {
     let value = data;
     for (let i = 0; i < path.length; i++) {
-        const comp = path[i];
-        if (Array.isArray(value) && isWildcardComp(comp)) {
-            return value.map(_ => deepGet(_, path.slice(i + 1)));
+        if (value == null) {
+            return null;
         }
-        if (value != null) {
+        const comp = path[i];
+        if (Array.isArray(value)) {
+            const idx = Number(comp);
+            if (isWildcardComp(comp)) {
+                value = value.flat(1);
+            } else if (!isNaN(idx)) {
+                value = value[idx];
+            } else {
+                value = value.map(_ => _[comp]);
+            }
+        } else {
             value = value[comp];
         }
     }
