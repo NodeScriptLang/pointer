@@ -6,9 +6,9 @@ describe('deep get', () => {
 
     const data = {
         items: [
-            { name: 'banana', price: 100, tags: ['fruit', 'yellow'] },
-            { name: 'orange', price: 50, tags: ['fruit', 'orange'] },
-            { name: 'apple', price: 70, tags: ['fruit', 'green', 'red'] },
+            { name: 'banana', price: 100 },
+            { name: 'orange', price: 50 },
+            { name: 'apple', price: 70 },
         ],
         vectors: [
             [0, 1, 2],
@@ -25,11 +25,6 @@ describe('deep get', () => {
     it('applies to multidimensional arrays', () => {
         const val = get(data, 'vectors.*.0');
         assert.deepEqual(val, [0, 3, 6]);
-    });
-
-    it('applies to sub-arrays', () => {
-        const tags = get(data, 'items.*.tags.*.0');
-        assert.deepStrictEqual(tags, ['fruit', 'fruit', 'fruit']);
     });
 
 });

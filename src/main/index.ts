@@ -8,9 +8,9 @@ function deepGet(data: any, path: string[]): unknown {
     for (let i = 0; i < path.length; i++) {
         const comp = path[i];
         if (Array.isArray(value) && isWildcardComp(comp)) {
-            value = value.map(_ => deepGet(_, path.slice(i + 1, i + 2)));
-            i += 1;
-        } else if (value != null) {
+            return value.map(_ => deepGet(_, path.slice(i + 1)));
+        }
+        if (value != null) {
             value = value[comp];
         }
     }
