@@ -7,7 +7,7 @@ function deepGet(data: any, path: string[]): unknown {
     let value = data;
     for (let i = 0; i < path.length; i++) {
         if (value == null) {
-            return null;
+            break;
         }
         const comp = path[i];
         if (Array.isArray(value)) {
@@ -17,7 +17,7 @@ function deepGet(data: any, path: string[]): unknown {
             } else if (!isNaN(idx)) {
                 value = value[idx];
             } else {
-                value = value.map(_ => _[comp]);
+                value = value.map(_ => deepGet(_, [comp]));
             }
         } else {
             value = value[comp];
