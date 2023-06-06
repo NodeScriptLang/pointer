@@ -36,9 +36,19 @@ describe('arrays', () => {
         assert.deepStrictEqual(val, [100, 50, 70]);
     });
 
-    it('flattens sub-arrays with wildcard', () => {
+    it('accesses sub-arrays with wildcard', () => {
         const val = get(data, 'items.*.tags.*.text');
-        assert.deepStrictEqual(val, ['fruit', 'fruit', 'sale', 'fruit']);
+        assert.deepStrictEqual(val, [['fruit'], ['fruit', 'sale'], ['fruit']]);
+    });
+
+    it('works with multi-dimension arrays', () => {
+        const matrix = [
+            [1, 'one', 'un'],
+            [2, 'two', 'deux'],
+            [3, 'three', 'trois'],
+        ];
+        const val = get(matrix, '*.1');
+        assert.deepStrictEqual(val, ['one', 'two', 'three']);
     });
 
 });
