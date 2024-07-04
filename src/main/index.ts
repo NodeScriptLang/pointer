@@ -41,6 +41,11 @@ export function set(data: any, pointer: string, value: unknown) {
  * treats it as dot-delimited path.
  */
 export function parsePath(pointer: string): string[] {
+    if (pointer.startsWith('"') && pointer.endsWith('"')) {
+        return [
+            pointer.substring(1, pointer.length - 1),
+        ];
+    }
     if (pointer.startsWith('/')) {
         return pointer.split('/').slice(1).map(_ => escapeJsonPointer(_));
     }
